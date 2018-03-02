@@ -11,6 +11,6 @@ public interface UserDao {
 
     User get(String id) throws SQLException;
 
-    boolean check(User user);
+    boolean check(User user) throws SQLException;
 }
 
