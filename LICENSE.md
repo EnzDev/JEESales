@@ -1,2 +1,2 @@
 
-Copyright (C) 2018 
+Copyright Enzo Mallard (C) 2018 
