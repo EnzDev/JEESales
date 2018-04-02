@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Home</title>
-    <%@ include file="../head.jsp" %>
+    <%@ include file="../WEB-INF/head.jsp" %>
 </head>
 <body>
 <div id="background"></div>
 <div id="needlog">
-    <%@ include file="../header.jsp" %>
+    <%@ include file="../WEB-INF/header.jsp" %>
     You must be logged in to use this website <br>
     Please log in or register to continue further.
 

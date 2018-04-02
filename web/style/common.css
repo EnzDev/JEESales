@@ -24,12 +24,20 @@
 }
 
 h1 {
-    padding: 2vw 0 2vw 2vw;
+    padding: 1vw 0 1vw 2vw;
+    color: #DDDDDD;
+    font-weight: 900;
+    font-size: 3em;
+    font-family: 'telegraficoregular', sans-serif;
 }
 
 nav {
-    display: inline-flex;
-    width: 100vw;
+    display: flex;
+    width: 100%;
+    padding: 0 0 1vh 0;
+    font-weight: 700;
+    align-items: center;
+    text-align: center;
 }
 
 nav span {
@@ -38,15 +46,17 @@ nav span {
 }
 
 nav a {
-    color: #bbb;
+    color: #DDD;
+    font-family: "telegraficoregular", sans-serif;
+    text-decoration: none;
 }
 
 nav a:hover {
-    color: #eee;
+    color: #FFF;
 }
 
-nav a.selected {
-    color: #659BC9;
+nav .selected a {
+    color: #7FDBFF;
 }
 
 
@@ -66,26 +76,68 @@ nav a.selected {
 
 .grid {
     position: relative;
-    display: grid;
+    display: inline-grid;
     height: 80%;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-content: start;
     grid-row-gap: 15px;
+    width: 100%;
 }
 
-@media all and (min-width: 250px ) and (max-width: 450px ) {  .grid{ grid-template-columns: repeat(1 , 200px); }  }
-@media all and (min-width: 450px ) and (max-width: 650px ) {  .grid{ grid-template-columns: repeat(2 , 200px); }  }
-@media all and (min-width: 650px ) and (max-width: 850px ) {  .grid{ grid-template-columns: repeat(3 , 200px); }  }
-@media all and (min-width: 850px ) and (max-width: 1050px) {  .grid{ grid-template-columns: repeat(4 , 200px); }  }
-@media all and (min-width: 1050px) and (max-width: 1250px) {  .grid{ grid-template-columns: repeat(5 , 200px); }  }
-@media all and (min-width: 1250px) and (max-width: 1450px) {  .grid{ grid-template-columns: repeat(6 , 200px); }  }
-@media all and (min-width: 1450px) and (max-width: 1650px) {  .grid{ grid-template-columns: repeat(7 , 200px); }  }
-@media all and (min-width: 1650px) and (max-width: 1850px) {  .grid{ grid-template-columns: repeat(8 , 200px); }  }
-@media all and (min-width: 1850px) and (max-width: 2050px) {  .grid{ grid-template-columns: repeat(9 , 200px); }  }
-@media all and (min-width: 2050px) and (max-width: 2250px) {  .grid{ grid-template-columns: repeat(10, 200px); }  }
-@media all and (min-width: 2250px) and (max-width: 2450px) {  .grid{ grid-template-columns: repeat(11, 200px); }  }
-@media all and (min-width: 2450px) and (max-width: 2650px) {  .grid{ grid-template-columns: repeat(12, 200px); }  }
+@media all and (min-width: 550px) {
+    .grid.both{
+        width: calc(100% - 250px) !important;
+    }
+}
+
+@media all and (min-width:   0px ) and (max-width: 550px ) {
+    .grid.alone{ grid-template-columns: repeat(1 , 250px); }
+}
+@media all and (min-width: 550px ) and (max-width: 800px ) {
+    .grid.alone{ grid-template-columns: repeat(2 , 250px); }
+    .grid.both { grid-template-columns: repeat(1 , 250px); }
+}
+@media all and (min-width: 800px ) and (max-width: 1050px) {
+    .grid.alone{ grid-template-columns: repeat(3 , 250px); }
+    .grid.both { grid-template-columns: repeat(2 , 250px); }
+}
+@media all and (min-width: 1050px) and (max-width: 1300px) {
+    .grid.alone{ grid-template-columns: repeat(4 , 250px); }
+    .grid.both { grid-template-columns: repeat(3 , 250px); }
+}
+@media all and (min-width: 1300px) and (max-width: 1550px) {
+    .grid.alone{ grid-template-columns: repeat(5 , 250px); }
+    .grid.both { grid-template-columns: repeat(4 , 250px); }
+}
+@media all and (min-width: 1550px) and (max-width: 1800px) {
+    .grid.alone{ grid-template-columns: repeat(6 , 250px); }
+    .grid.both { grid-template-columns: repeat(5 , 250px); }
+}
+@media all and (min-width: 1800px) and (max-width: 2050px) {
+    .grid.alone{ grid-template-columns: repeat(7 , 250px); }
+    .grid.both { grid-template-columns: repeat(6 , 250px); }
+}
+@media all and (min-width: 2050px) and (max-width: 2300px) {
+    .grid.alone{ grid-template-columns: repeat(8 , 250px); }
+    .grid.both { grid-template-columns: repeat(7 , 250px); }
+}
+@media all and (min-width: 2300px) and (max-width: 2550px) {
+    .grid.alone{ grid-template-columns: repeat(9 , 250px); }
+    .grid.both { grid-template-columns: repeat(8 , 250px); }
+}
+@media all and (min-width: 2550px) and (max-width: 2800px) {
+    .grid.alone{ grid-template-columns: repeat(10, 250px); }
+    .grid.both { grid-template-columns: repeat(9 , 250px); }
+}
+@media all and (min-width: 2800px) and (max-width: 3050px) {
+    .grid.alone{ grid-template-columns: repeat(11, 250px); }
+    .grid.both { grid-template-columns: repeat(10, 250px); }
+}
+@media all and (min-width: 3050px) and (max-width: 9999px) {
+    .grid.alone{ grid-template-columns: repeat(12, 250px); }
+    .grid.both { grid-template-columns: repeat(11, 250px); }
+}
 
 #select {
     position: fixed;
@@ -93,8 +145,13 @@ nav a.selected {
     left: 50%;
     transform: translate(-50%, -50%);
 
+
     color: white;
     font-weight: bold;
+
+    border-radius: 10px;
+    padding: 10px;
+    background: #ffffff66;
 }
 
 input {
@@ -114,29 +171,30 @@ input[type="submit"] {
 }
 
 .status {
+    font-family: 'telegraficoregular', sans-serif;
     padding-left: 15px;
     border-radius: 5px 5px 0 0;
 }
 
 .status-0 { /* Temporary */
-    background: dodgerblue;
+    background: #0074D9;
 }
 
 .status-1 { /* Published */
-    background: green;
+    background: #3D9970;
 }
 
 .status-2 { /* Sell */
-    background: yellow;
+    background: #FFDC00;
 }
 
 .status-3 { /* Sell */
-    background: red;
+    background: #FF4136;
 }
 
 .sale {
     display: block;
-    width: 200px;
+    width: 250px;
     background: #f8f9e9aa;
     flex-wrap: wrap;
     flex-shrink: 0;
@@ -184,3 +242,37 @@ input[type="submit"] {
     right: 2px;
     bottom: 2px;
 }
+
+.click {
+    cursor: alias;
+}
+
+.error {
+    color: #FF4136;
+    text-align: center;
+}
+
+#sales-mine-list {
+    position: relative;
+    display: inline-grid;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: start;
+    grid-row-gap: 15px;
+}
+
+.sale-mine {
+    display: block;
+    width: 220px;
+    background: #f8f9e9aa;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    border-radius: 5px;
+}
+
+.sale-mine .title {
+    text-align: center;
+    position: static;
+}
+
+.fa{ font-size: 0.8em; }

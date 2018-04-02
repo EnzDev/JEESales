@@ -29,7 +29,7 @@ public class SqlSaleDao implements ISaleDao {
             statement.setInt(1, sale.getId());
             statement.setString(2, sale.getTitre());
             statement.setString(3, sale.getDescription());
-            statement.setString(4, sale.getAcheteur().getId());
+            statement.setString(4, sale.getVendeur().getId());
             statement.setDate(5, (Date) sale.getCreation());
             statement.setDate(6, (Date) sale.getModification());
             statement.setDouble(7, sale.getPrix());
@@ -62,7 +62,7 @@ public class SqlSaleDao implements ISaleDao {
 
             statement.setString(1, sale.getTitre());
             statement.setString(2, sale.getDescription());
-            statement.setString(3, sale.getAcheteur().getId());
+            statement.setString(3, sale.getVendeur().getId());
             statement.setDate(4, (Date) sale.getCreation());
             statement.setDate(5, (Date) sale.getModification());
             statement.setDouble(6, sale.getPrix());
@@ -94,7 +94,7 @@ public class SqlSaleDao implements ISaleDao {
                 current.setId(result.getInt(1));
                 current.setTitre(result.getString(2));
                 current.setDescription(result.getString(3));
-                current.setAcheteur(IUserDao.get(result.getString(4)));
+                current.setVendeur(IUserDao.get(result.getString(4)));
                 current.setCreation(result.getDate(5));
                 current.setModification(result.getDate(6));
                 current.setPrix(result.getDouble(7));

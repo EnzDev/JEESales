@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// @WebServlet("/login")
+
 public class Login extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(Login.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.info("Login request (POST) with email " + request.getParameter("email"));
+        logger.info("Login request (POST) with email \"" + request.getParameter("email") + "\"");
         User tryUser = new User();
         tryUser.setId(request.getParameter("email"));
         tryUser.setPassword(request.getParameter("password"));
@@ -28,9 +28,10 @@ public class Login extends HttpServlet {
         isRight = IUserDao.check(tryUser);
         //} catch (SQLException ignored) {} finally {
         if (!isRight) {
+            request.setAttribute("error", true);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            request.getSession().setAttribute("userdao", IUserDao.get(tryUser.getId()));
+            request.getSession().setAttribute("user", IUserDao.get(tryUser.getId()));
             request.getSession().setAttribute("isLoggedIn", true);
             response.sendRedirect("/");
         }
@@ -40,6 +41,7 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.info("Login page request (GET)");
         // Get on /login => Serve the login page
+        request.setAttribute("error", false);
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }

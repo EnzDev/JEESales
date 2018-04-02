@@ -68,8 +68,13 @@ public class SqlUserDao implements IUserDao {
 
     @Override
     public boolean check(User user) {
-        User dbUser = get(user.getId());
-        return dbUser.getPassword().equals(user.getPassword());
+        String providedId = user.getId();
+        String providedPassword = user.getPassword();
+        if(providedId == null || providedId.equals("")) return false;
+        if(providedPassword == null || providedPassword.equals("")) return false;
+        User dbUser = get(providedId);
+        if(dbUser == null) return false;
+        return dbUser.getPassword().equals(providedPassword);
     }
 
     public int size() {

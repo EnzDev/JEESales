@@ -8,11 +8,11 @@
 <html>
 <head>
     <title>Home</title>
-    <%@ include file="/head.jsp" %>
+    <%@ include file="/WEB-INF/head.jsp" %>
 </head>
 <body>
 <div id="background"></div>
-<%@ include file="/header.jsp" %>
+<%@ include file="/WEB-INF/header.jsp" %>
 <section id="main">
     <% sale = JspHelper.<Sale>getAttributeObject(request, "sale");%>
     <div class="sale-mine">
