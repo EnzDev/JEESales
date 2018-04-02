@@ -1,56 +1,49 @@
 package fr.enzomallard.app.beans;
 
 public class User {
-	
-	private String id;
-	private String nom;
-	private String password;
-	private String telephone;
-	private boolean administrateur;
-	
-	public User() {
-		administrateur = false;
-	}
 
-	public String getId() {
-		return id;
-	}
+    private String id;
+    private String nom;
+    private String password;
+    private String telephone;
+    private boolean administrateur;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public User() {
+        administrateur = false;
+    }
 
-	public String getNom() {
-		return nom;
-	}
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    public String getNom() {
+        return nom;
+    }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getTelephone() {
+        return telephone;
+    }
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public boolean isAdministrateur() {
-		return administrateur;
-	}
-
-	public void setAdministrateur(boolean administrateur) {
-		this.administrateur = administrateur;
-	}
-
-	
+    public boolean isAdministrateur() {
+        return administrateur;
+    }
+    public void setAdministrateur(boolean administrateur) {
+        this.administrateur = administrateur;
+    }
 }

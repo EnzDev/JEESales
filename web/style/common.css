@@ -1,0 +1,186 @@
+:root {
+    --main: #edfeeb;
+    --contrast: #f8512f;
+    --secondary: #cfe0cd;
+    --contrast-back: #f8f9e9;
+}
+
+#background{
+    background: url("https://wallpapercave.com/wp/dwwIVzJ.jpg") no-repeat center center;
+    background-size: 100vw 100vh;
+
+    height: 100vh;
+    width: 100vw;
+
+    position: fixed;
+
+    filter: brightness(0.4);
+    z-index: -1;
+}
+
+#needlog{
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+    padding: 2vw 0 2vw 2vw;
+}
+
+nav {
+    display: inline-flex;
+    width: 100vw;
+}
+
+nav span {
+    margin: 0 1vw;
+    flex-grow: 1;
+}
+
+nav a {
+    color: #bbb;
+}
+
+nav a:hover {
+    color: #eee;
+}
+
+nav a.selected {
+    color: #659BC9;
+}
+
+
+
+.flex-c {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-r {
+    position: relative;
+    display: flex;
+    height: 80%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.grid {
+    position: relative;
+    display: grid;
+    height: 80%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: start;
+    grid-row-gap: 15px;
+}
+
+@media all and (min-width: 250px ) and (max-width: 450px ) {  .grid{ grid-template-columns: repeat(1 , 200px); }  }
+@media all and (min-width: 450px ) and (max-width: 650px ) {  .grid{ grid-template-columns: repeat(2 , 200px); }  }
+@media all and (min-width: 650px ) and (max-width: 850px ) {  .grid{ grid-template-columns: repeat(3 , 200px); }  }
+@media all and (min-width: 850px ) and (max-width: 1050px) {  .grid{ grid-template-columns: repeat(4 , 200px); }  }
+@media all and (min-width: 1050px) and (max-width: 1250px) {  .grid{ grid-template-columns: repeat(5 , 200px); }  }
+@media all and (min-width: 1250px) and (max-width: 1450px) {  .grid{ grid-template-columns: repeat(6 , 200px); }  }
+@media all and (min-width: 1450px) and (max-width: 1650px) {  .grid{ grid-template-columns: repeat(7 , 200px); }  }
+@media all and (min-width: 1650px) and (max-width: 1850px) {  .grid{ grid-template-columns: repeat(8 , 200px); }  }
+@media all and (min-width: 1850px) and (max-width: 2050px) {  .grid{ grid-template-columns: repeat(9 , 200px); }  }
+@media all and (min-width: 2050px) and (max-width: 2250px) {  .grid{ grid-template-columns: repeat(10, 200px); }  }
+@media all and (min-width: 2250px) and (max-width: 2450px) {  .grid{ grid-template-columns: repeat(11, 200px); }  }
+@media all and (min-width: 2450px) and (max-width: 2650px) {  .grid{ grid-template-columns: repeat(12, 200px); }  }
+
+#select {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+    font-weight: bold;
+}
+
+input {
+    margin: 3px;
+    padding: 9px;
+    border-radius: 100px;
+}
+
+input[type=text], input[type=password] {
+    background: rgba(0,0,0,0.7);
+}
+
+input[type="submit"] {
+    color: white;
+    background: rgb(226, 198, 16);
+    margin: 3px 3px 10px 3px;
+}
+
+.status {
+    padding-left: 15px;
+    border-radius: 5px 5px 0 0;
+}
+
+.status-0 { /* Temporary */
+    background: dodgerblue;
+}
+
+.status-1 { /* Published */
+    background: green;
+}
+
+.status-2 { /* Sell */
+    background: yellow;
+}
+
+.status-3 { /* Sell */
+    background: red;
+}
+
+.sale {
+    display: block;
+    width: 200px;
+    background: #f8f9e9aa;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.sale .content {
+    position: relative;
+    height: calc( 100% - 1em );
+}
+
+.title {
+    position: absolute;
+    top:  2px;
+    left: 2px;
+    font-size: 1.3em;
+}
+
+.views {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.9em;
+}
+
+.description {
+    position: absolute;
+    top: calc( 1.3em + 4px );
+    left: 2px;
+    height: 2.1em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 196px;
+}
+
+.price {
+    position: absolute;
+    left: 2px;
+    bottom: 2px;
+}
+
+.date {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+}
