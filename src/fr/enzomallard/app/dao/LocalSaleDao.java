@@ -32,7 +32,7 @@ public class LocalSaleDao implements ISaleDao {
         sale3.setTitre("Livre 3");
         sale3.setVendeur(new User());
         sale3.getVendeur().setId("TOTO");
-        sale3.setStatut(Status.ANNULE);
+        sale3.setStatut(Status.CANCELED);
         localData.add(sale3);
     }
 
@@ -57,7 +57,7 @@ public class LocalSaleDao implements ISaleDao {
     @Override
     public List<Sale> get(User user) {
         return localData.stream()
-                .filter(s -> s.getVendeur().getId().equals(user.getId()) || s.getStatus() == Status.PUBLIE)
+                .filter(s -> s.getVendeur().getId().equals(user.getId()) || s.getStatus() == Status.PUBLISHED)
                 .collect(Collectors.toList());
     }
 

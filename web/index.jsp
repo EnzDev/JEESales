@@ -40,6 +40,7 @@
 
 <% if (JspHelper.getSessionBoolean(request, "isLoggedIn")) { %>
 <section id="sales-mine-list">
+    <a href="#" class="add"><i class="fas fa-plus-square"></i> Add a new sale</a>
     <% pageContext.setAttribute("mySales", DaoFactory.getInstance()
             .getSaleDao()
             .getFrom(user, true)); %>

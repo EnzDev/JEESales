@@ -145,7 +145,7 @@ public class SqlSaleDao implements ISaleDao {
 
             while (result.next()) {
                 Sale sale = this.get(result.getInt(1));
-                if (all || sale.getStatus() == Status.PUBLIE)
+                if (all || sale.getStatus() == Status.PUBLISHED)
                     sales.add(sale);
             }
 

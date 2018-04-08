@@ -17,7 +17,7 @@ public class Sale {
     private Date achat;
 
     public Sale() {
-        statut = Status.TEMPORAIRE;
+        statut = Status.TEMPORARY;
     }
 
     public int getId() {

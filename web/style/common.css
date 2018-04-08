@@ -45,7 +45,7 @@ nav span {
     flex-grow: 1;
 }
 
-nav a {
+nav a, .add {
     color: #DDD;
     font-family: "telegraficoregular", sans-serif;
     text-decoration: none;
@@ -170,7 +170,7 @@ input[type="submit"] {
     margin: 3px 3px 10px 3px;
 }
 
-.status {
+.status, .add {
     font-family: 'telegraficoregular', sans-serif;
     padding-left: 15px;
     border-radius: 5px 5px 0 0;

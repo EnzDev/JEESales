@@ -1,0 +1,22 @@
+#main {
+    display: flex;
+    justify-content: center;
+}
+
+.sale-mine {
+    position: absolute;
+    height: 70vh;
+    width: 70vw;
+}
+
+.sale-mine div a {
+    right: 0;
+    position: absolute;
+    padding: 15px;
+}
+
+.author {
+    bottom: 2em;
+    position: absolute;
+    left: 2px;
+}
