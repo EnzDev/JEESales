@@ -55,7 +55,7 @@ public class LocalSaleDao implements ISaleDao {
     }
 
     @Override
-    public List<Sale> get(User user) {
+    public List<Sale> get(User user, boolean all) {
         return localData.stream()
                 .filter(s -> s.getVendeur().getId().equals(user.getId()) || s.getStatus() == Status.PUBLISHED)
                 .collect(Collectors.toList());

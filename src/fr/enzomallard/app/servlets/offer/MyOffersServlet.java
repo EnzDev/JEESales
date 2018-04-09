@@ -18,7 +18,7 @@ public class MyOffersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (JspHelper.getSessionBoolean(request, "isLoggedIn")){
             // Serve if logged
-            request.getRequestDispatcher("mysales.jsp");
+            request.getRequestDispatcher("/WEB-INF/mysales.jsp").forward(request, response);
         }else{ // Else, redirect to the login page
             response.sendRedirect("/login");
         }

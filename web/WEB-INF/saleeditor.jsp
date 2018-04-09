@@ -11,30 +11,28 @@
     <title>Home</title>
     <%@ include file="/WEB-INF/head.jsp" %>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/sale.css">
+    <style>
+        textarea.description {
+            width: calc(100% - 5px);
+            height: calc(100% - 5.5em);
+        }
+    </style>
 </head>
 <body>
 <div id="background"></div>
 <%@ include file="/WEB-INF/header.jsp" %>
-<section id="main">
+<form id="main" action="${pageContext.request.contextPath}/offer/edit?id=${sale.id}" method="post">
     <% sale = JspHelper.<Sale>getAttributeObject(request, "sale");
         pageContext.setAttribute("user", user);%>
     <div class="sale sale-mine">
         <div class="status status-${sale.status.ordinal()}">${sale.status}</div>
-        <c:if test="${(sale.vendeur.id.equals(user.id) && sale.status != Status.SOLD) || user.administrateur}">
-            <div class="edit-link"><a href="${pageContext.request.contextPath}/offer/edit?id=${sale.id}"><i
-                    class="fa fa-pencil-alt"></i></a>
-            </div>
-        </c:if>
         <div class="views">${sale.nbVues}</div>
         <div class="content">
-            <div class="title">${sale.titre}</div>
-            <div class="author">${sale.vendeur.nom.equals("") ? sale.vendeur.id : sale.vendeur.nom}
-                <c:if test="${sale.vendeur.telephone != null && !sale.vendeur.telephone.equals(\"\")}">
-                    (${sale.vendeur.telephone})
-                </c:if>
+            <input autocomplete="off" name="title" class="title" value="${sale.titre}">
+            <div class="author">${sale.vendeur.nom.equals("") ? sale.vendeur.id : sale.vendeur.nom}</div>
+            <textarea autocomplete="off" name="description" class="description">${sale.description}</textarea>
+            <div class="price"><input autocomplete="off" name="price" value="20.6" step=".01" type="number" style="width: 4em;">€
             </div>
-            <div class="description">${sale.description}</div>
-            <div class="price">${sale.prix}€</div>
             <div class="date">
                 <div>Created : <%=
                 DateFormat
@@ -59,8 +57,6 @@
         </div>
     </div>
     <div class="buttons">
-        <a class="info-cancel" href="#">Report</a>
-        <span class="clear"></span>
         <%
             switch (sale.getStatus()) {
                 case PUBLISHED:
@@ -74,7 +70,7 @@
             ;
             break;
         case SOLD:
-    %> <a class="info-bough" href="">Bought by : <%= sale.getAcheteur().getNom() %>
+    %> <a class="info-bough" href="#">Bought by : <%= sale.getAcheteur().getNom() %>
     </a> <%
             break;
         case TEMPORARY:
@@ -85,9 +81,14 @@
                 }
                 break;
         } %>
+        <input type="submit" name="do" class="info-publish"
+               href="${pageContext.request.contextPath}/offer/edit?do=save&id=${sale.id}" value="Save"/>
+        <input type="submit" name="do" class="info-publish"
+               href="${pageContext.request.contextPath}/offer/edit?do=publish&id=${sale.id}" value="Publish"/>
     </div>
-</section>
+</form>
 </body>
 <script>
+
 </script>
 </html>

@@ -3,6 +3,25 @@
     --contrast: #f8512f;
     --secondary: #cfe0cd;
     --contrast-back: #f8f9e9;
+
+
+    --NAVY: #001f3f;
+    --BLUE: #0074D9;
+    --AQUA: #7FDBFF;
+    --TEAL: #39CCCC;
+    --OLIVE: #3D9970;
+    --GREEN: #2ECC40;
+    --LIME: #01FF70;
+    --YELLOW: #FFDC00;
+    --ORANGE: #FF851B;
+    --RED: #FF4136;
+    --MAROON: #85144b;
+    --FUCHSIA: #F012BE;
+    --PURPLE: #B10DC9;
+    --BLACK: #111111;
+    --GRAY: #AAAAAA;
+    --SILVER: #DDDDDD;
+
 }
 
 #background{
@@ -177,19 +196,19 @@ input[type="submit"] {
 }
 
 .status-0 { /* Temporary */
-    background: #0074D9;
+    background: var(--BLUE);
 }
 
 .status-1 { /* Published */
-    background: #3D9970;
+    background: var(--OLIVE);
 }
 
 .status-2 { /* Sell */
-    background: #FFDC00;
+    background: var(--YELLOW);
 }
 
-.status-3 { /* Sell */
-    background: #FF4136;
+.status-3 { /* Canceled */
+    background: var(--RED);
 }
 
 .sale {
@@ -248,7 +267,7 @@ input[type="submit"] {
 }
 
 .error {
-    color: #FF4136;
+    color: var(--RED);
     text-align: center;
 }
 
@@ -276,3 +295,51 @@ input[type="submit"] {
 }
 
 .fa{ font-size: 0.8em; }
+
+.edit-link *{
+    z-index: 99;
+}
+
+.sale-mine input, .sale-mine textarea {
+    background: rgba(0,0,0,0.2);
+    font-family: inherit;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+textarea.description {
+    width: calc(100% - 5px);
+    height: calc( 100% - 5em );
+    border-radius: 5px;
+}
+
+.sale-mine input.title {
+    width: 100%;
+}
+
+.buttons {display: flex }
+
+.buttons a, .buttons input{
+    font-family: 'telegraficoregular', sans-serif;
+    padding: 2px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--BLACK);
+    margin: 10px 10px;
+}
+
+.info-bough{
+    background-color: var(--YELLOW) !important;
+}
+.info-buy{
+    background-color: var(--TEAL) !important;
+}
+.info-cancel{
+    background-color: var(--RED) !important;
+}
+.info-publish{
+    background-color: var(--OLIVE) !important;
+}

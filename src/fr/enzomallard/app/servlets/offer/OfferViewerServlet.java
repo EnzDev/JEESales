@@ -14,15 +14,19 @@ import java.io.IOException;
 public class OfferViewerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO: 08/03/18 Display the selected offer
         // NOTE: 08/03/18 Check the ability for the user to see the offer
-        int offerId = Integer.parseInt(request.getParameter("id"));
-        if(offerId == 0){
+        int offerId = 0;
+        if (request.getParameter("id") != null)
+            offerId = Integer.parseInt(request.getParameter("id"));
+
+        if (offerId == 0 || offerId > DaoFactory.getInstance().getSaleDao().size()) {
             response.sendRedirect("/");
-        }else{
+        } else {
             Sale s = DaoFactory.getInstance().getSaleDao().get(offerId);
             request.setAttribute("sale", s);
             request.getRequestDispatcher("/WEB-INF/sales.jsp").forward(request, response);
+            s.setNbVues(s.getNbVues() + 1);
+            DaoFactory.getInstance().getSaleDao().update(s);
         }
     }
 }

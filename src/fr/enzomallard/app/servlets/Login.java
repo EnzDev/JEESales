@@ -24,9 +24,8 @@ public class Login extends HttpServlet {
 
         boolean isRight = false;
         IUserDao IUserDao = DaoFactory.getInstance().getUserDao();
-        //try {
         isRight = IUserDao.check(tryUser);
-        //} catch (SQLException ignored) {} finally {
+
         if (!isRight) {
             request.setAttribute("error", true);
             request.getRequestDispatcher("login.jsp").forward(request, response);

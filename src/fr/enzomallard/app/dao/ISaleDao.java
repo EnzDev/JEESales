@@ -3,6 +3,7 @@ package fr.enzomallard.app.dao;
 
 import fr.enzomallard.app.beans.Sale;
 import fr.enzomallard.app.beans.User;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public interface ISaleDao {
      * @param user The user bean
      * @return A list of all Sales
      */
-    List<Sale> get(User user);
+    List<Sale> get(@Nullable User user, boolean all);
 
     /**
      * Get the sales of a user

@@ -1,6 +1,8 @@
 package fr.enzomallard.app.beans;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Comparable<User>, Serializable {
 
     private String id;
     private String nom;
@@ -45,5 +47,16 @@ public class User {
     }
     public void setAdministrateur(boolean administrateur) {
         this.administrateur = administrateur;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return id.compareTo(o.id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof User))return false;
+        return this.compareTo((User) obj) == 0;
     }
 }

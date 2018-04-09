@@ -6,6 +6,9 @@ import fr.enzomallard.app.beans.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SqlUserDao implements IUserDao {
     private final DaoFactory dao;
@@ -24,8 +27,8 @@ public class SqlUserDao implements IUserDao {
             statement.setString(3, user.getNom());
             statement.setString(4, user.getTelephone());
             statement.setBoolean(5, user.isAdministrateur());
-
-            return statement.execute();
+            int update = statement.executeUpdate();
+            return update > 0;
         } catch (Exception e) {
             return false;
         }
@@ -38,6 +41,29 @@ public class SqlUserDao implements IUserDao {
                     .prepareStatement("DELETE FROM USERS WHERE ID=?;");
             statement.setString(1, user.getId());
 
+            return statement.execute();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean update(User user) {
+        try {
+            PreparedStatement statement = dao.getConnection()
+                    .prepareStatement("UPDATE USERS SET " +
+                            "PASSWORD = ?," +
+                            "NOM = ?," +
+                            "TELEPHONE = ?," +
+                            "ISADMINISTRATOR = ?" +
+                            " WHERE ID = ?;");
+
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getNom());
+            statement.setString(3, user.getTelephone());
+            statement.setBoolean(4, user.isAdministrateur());
+
+            statement.setString(5, user.getId());
             return statement.execute();
         } catch (Exception e) {
             return false;
@@ -61,6 +87,29 @@ public class SqlUserDao implements IUserDao {
                 user.setAdministrateur(result.getBoolean(5));
             }
             return user;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Set<User> getAll() {
+        try {
+            PreparedStatement statement = dao.getConnection()
+                    .prepareStatement("SELECT * FROM USERS;");
+
+            ResultSet result = statement.executeQuery();
+            TreeSet<User> userList = new TreeSet<>();
+            while (result.next()) {
+                User user = new User();
+                user.setId(result.getString(1));
+                user.setPassword(result.getString(2));
+                user.setNom(result.getString(3));
+                user.setTelephone(result.getString(4));
+                user.setAdministrateur(result.getBoolean(5));
+                userList.add(user);
+            }
+            return userList;
         } catch (Exception e) {
             return null;
         }

@@ -9,9 +9,9 @@
         <span class="clear"></span>
 
         <% if (isLoggedIn) { %>
-        <span><a href="${pageContext.request.contextPath}/logout">Welcome <%= user.getNom().equals("") ? user.getId() : user.getNom() %></a></span>
+        <span><a href="${pageContext.request.contextPath}/logout">Welcome <%= "".equals(user.getNom()) || user.getNom() == null ? user.getId() : user.getNom() %></a></span>
         <% } else { %>
-        <span><a href="${pageContext.request.contextPath}/login">Login</a></span>
+        <span class="${pageContext.request.servletPath.contains("login") ? "selected" : ""}"><a href="${pageContext.request.contextPath}/login">Login</a></span>
         <% } %>
         <%
             if(user != null && user.isAdministrateur()){ %>

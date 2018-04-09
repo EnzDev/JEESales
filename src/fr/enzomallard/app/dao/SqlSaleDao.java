@@ -1,11 +1,13 @@
 package fr.enzomallard.app.dao;
 
+
 import fr.enzomallard.app.DaoFactory;
 import fr.enzomallard.app.beans.Sale;
 import fr.enzomallard.app.beans.Status;
 import fr.enzomallard.app.beans.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -30,12 +32,15 @@ public class SqlSaleDao implements ISaleDao {
             statement.setString(2, sale.getTitre());
             statement.setString(3, sale.getDescription());
             statement.setString(4, sale.getVendeur().getId());
-            statement.setDate(5, (Date) sale.getCreation());
-            statement.setDate(6, (Date) sale.getModification());
+            statement.setDate(5, new Date(sale.getCreation().getTime()));
+            statement.setDate(6, new Date(sale.getModification().getTime()));
             statement.setDouble(7, sale.getPrix());
             statement.setInt(8, sale.getStatus().ordinal());
-            statement.setString(9, sale.getAcheteur().getId());
-            statement.setDate(10, (Date) sale.getAchat());
+            if (sale.getAcheteur() == null)
+                statement.setString(9, null);
+            else
+                statement.setString(9, sale.getAcheteur().getId());
+            statement.setDate(10,  sale.getAchat() == null ? null : new Date(sale.getAchat().getTime()));
             statement.setLong(11, sale.getNbVues());
 
             return statement.execute();
@@ -63,12 +68,15 @@ public class SqlSaleDao implements ISaleDao {
             statement.setString(1, sale.getTitre());
             statement.setString(2, sale.getDescription());
             statement.setString(3, sale.getVendeur().getId());
-            statement.setDate(4, (Date) sale.getCreation());
-            statement.setDate(5, (Date) sale.getModification());
+            statement.setDate(4, new Date(sale.getCreation().getTime()));
+            statement.setDate(5, new Date(sale.getModification().getTime()));
             statement.setDouble(6, sale.getPrix());
             statement.setInt(7, sale.getStatus().ordinal());
-            statement.setString(8, sale.getAcheteur().getId());
-            statement.setDate(9, (Date) sale.getAchat());
+            if (sale.getAcheteur() == null)
+                statement.setString(8, null);
+            else statement.setString(8, sale.getAcheteur().getId());
+
+            statement.setDate(9,  sale.getAchat() == null ? null : new Date(sale.getAchat().getTime()));
             statement.setLong(10, sale.getNbVues());
 
             // WHERE ID=
@@ -111,15 +119,21 @@ public class SqlSaleDao implements ISaleDao {
     }
 
     @Override
-    public List<Sale> get(User user) {
+    public List<Sale> get(@Nullable User user, boolean all) {
         ArrayList<Sale> sales = new ArrayList<>();
         if (user == null)
             user = new User();
         try {
-            PreparedStatement statement = dao.getConnection()
-                    .prepareStatement("SELECT id FROM ANNONCES"/*" WHERE USER_ID=? OR STATUS=1"*/);
+            PreparedStatement statement;
+            if (all) {
+                statement = dao.getConnection()
+                        .prepareStatement("SELECT id FROM ANNONCES");
+            } else {
+                statement = dao.getConnection()
+                        .prepareStatement("SELECT id FROM ANNONCES WHERE USER_ID=? OR STATUS=1");
 
-            // statement.setString(1, user.getId());
+                statement.setString(1, user.getId());
+            }
             ResultSet result = statement.executeQuery();
 
             while (result.next())
@@ -132,9 +146,10 @@ public class SqlSaleDao implements ISaleDao {
     }
 
     @Override
-    public List<Sale> getFrom(User user, boolean all) {
+    public List<Sale> getFrom(@Nullable User user, boolean all) {
         ArrayList<Sale> sales = new ArrayList<>();
-
+        if (user == null)
+            return get(null, all);
         try {
             PreparedStatement statement;
             statement = dao.getConnection()

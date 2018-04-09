@@ -1,8 +1,9 @@
 package fr.enzomallard.app.beans;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Sale {
+public class Sale implements Serializable {
 
     private int id;
     private User vendeur;

@@ -14,7 +14,7 @@
 <section id="sales-seeable" class="grid <%= JspHelper.getSessionBoolean(request, "isLoggedIn") ? "both" : "alone"%>">
     <% pageContext.setAttribute("seeableSales", DaoFactory.getInstance()
             .getSaleDao()
-            .get(user));
+            .get(user, user != null && user.isAdministrateur()));
         pageContext.setAttribute("user", user);
     %>
     <c:forEach items="${seeableSales}" var="sale">
@@ -36,11 +36,17 @@
             </div>
         </div>
     </c:forEach>
+    <c:if test="${seeableSales.size() == 0}">
+        <div class="sale">
+            <div class="status status-2">
+                Nobody Here but Us Chickens
+            </div>
+        </div>
+    </c:if>
 </section>
-
 <% if (JspHelper.getSessionBoolean(request, "isLoggedIn")) { %>
 <section id="sales-mine-list">
-    <a href="#" class="add"><i class="fas fa-plus-square"></i> Add a new sale</a>
+    <a href="${pageContext.request.contextPath}/offer/create" class="add"><i class="fas fa-plus-square"></i> Add a new sale</a>
     <% pageContext.setAttribute("mySales", DaoFactory.getInstance()
             .getSaleDao()
             .getFrom(user, true)); %>
