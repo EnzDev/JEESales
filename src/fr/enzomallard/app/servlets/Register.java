@@ -24,7 +24,7 @@ public class Register extends HttpServlet {
         User newUser = new User();
 
         String[] passwords = request.getParameterValues("password");
-        if (passwords.length == 2 && passwords[0].equals(passwords[1])) {
+        if (passwords.length == 2 && passwords[0].equals(passwords[1]) && !"".equals(request.getParameter("email"))) {
             newUser.setId(request.getParameter("email"));
             newUser.setPassword(passwords[0]);
             newUser.setAdministrateur(false);

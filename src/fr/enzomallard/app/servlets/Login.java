@@ -30,6 +30,7 @@ public class Login extends HttpServlet {
             request.setAttribute("error", true);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
+            logger.error("User from "+request.getRemoteAddr()+" tried to connect to username "+request.getParameter("email")+" with password "+request.getParameter("password"));
             request.getSession().setAttribute("user", IUserDao.get(tryUser.getId()));
             request.getSession().setAttribute("isLoggedIn", true);
             response.sendRedirect("/");
