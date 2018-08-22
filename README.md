@@ -7,6 +7,8 @@ The aim of this website were to get my hands on basic JEE features like `Servlet
 
 It features administration, registration and basics ads repporting/publishing/canceling.
 
+A demo is available at [lebonjee.enzomallard.fr](http://lebonjee.enzomallard.fr)
+
 ## Administration
 Any user with Admin/Mods rights can promote other users to their rank.  
 They can see every ads and can cancel/hide them.
@@ -15,3 +17,4 @@ Admin credentials are (`admin[at]epsi.fr`/`bach3`)
 
 ## Registration
 On the login page, the user can register an account (no mail will be sent).
+
